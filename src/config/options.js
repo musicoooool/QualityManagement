@@ -18,7 +18,12 @@ var options = {
         value: '4',
         label: '检封'
     }],
-    prod: [],
+    prod: [
+        {
+            value: '1',
+            label: '第三个'
+        }
+    ],
     machine: [],
     operator: [{
         label: '工艺组',

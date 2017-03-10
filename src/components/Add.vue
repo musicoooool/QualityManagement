@@ -28,7 +28,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="车号/轴号" prop="cartno">
-            <el-input v-model="value.cartno" :maxlength="8" :minlength="7" icon="edit" placeholder="请输入车号/轴号信息"></el-input>
+            <el-input v-model="value.cartno" :maxlength="8" :minlength="7" icon="edit" placeholder="请输入车号/轴号信息" @blur="upper"></el-input>
           </el-form-item>
         </div>
       </div>
@@ -105,7 +105,7 @@
         var id = parseInt(this.$store.state.add.proc);
         return this.options.proc[id + 1].label;
       }
-    },
+    }, 
     watch: {
       procId(id) {
         this.$store.state.add.machine = '';
@@ -114,10 +114,13 @@
         }
       },
       "value.cartno": function (val) {
-        this.$store.state.add.cartno = val.toUpperCase();
+        // this.$store.state.add.cartno = this.$store.state.add.cartno.toUpperCase();
       }
     },
     methods: {
+      upper(){
+        this.$store.state.add.cartno = this.$store.state.add.cartno.toUpperCase();
+      },
       loadProd() {
         var url = HOST + '/DataInterface/Api';
         this.$http.jsonp(url, {
